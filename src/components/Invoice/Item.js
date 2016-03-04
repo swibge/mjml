@@ -13,7 +13,7 @@ import _ from 'lodash'
 
     'color': '#747474',
     'font-family': 'Roboto, Ubuntu, Helvetica, Arial, sans-serif',
-    'padding': '10px 20px',
+    'padding': '10px 25px',
     'font-size': '14px',
     'text-align': 'left'
   }
