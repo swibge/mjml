@@ -1,9 +1,7 @@
 import { MJMLElement } from 'mjml-core'
 import { widthParser } from 'mjml-core/lib/helpers'
 import merge from 'lodash/merge'
-import MJMLColumn from 'mjml-column'
 import MJMLSection from 'mjml-section'
-import MJMLText from 'mjml-text'
 import React, { Component } from 'react'
 
 const tagName = 'mj-navbar'
@@ -44,12 +42,10 @@ class Navbar extends Component {
     const { mjContent } = this.props
 
     return (
-      <MJMLSection full-width="full-width" {...this.props}>
-        <MJMLColumn>
-          <MJMLText>
-            {mjContent()}
-          </MJMLText>
-        </MJMLColumn>
+      <MJMLSection
+        {...this.props}
+        full-width="full-width">
+        <div dangerouslySetInnerHTML={{ __html: mjContent() }} />
       </MJMLSection>
     )
   }
