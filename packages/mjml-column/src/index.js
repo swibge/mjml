@@ -1,5 +1,4 @@
-import { MJMLElement } from 'mjml-core'
-import { widthParser } from 'mjml-core/lib/helpers'
+import { MJMLElement, helpers } from 'mjml-core'
 import each from 'lodash/each'
 import merge from 'lodash/merge'
 import React, { Component } from 'react'
@@ -54,7 +53,7 @@ class Column extends Component {
       div: {
         display: 'inline-block',
         verticalAlign: mjAttribute('vertical-align'),
-        fontSize: '13',
+        fontSize: '13px',
         textAlign: 'left',
         width: '100%'
       },
@@ -73,7 +72,7 @@ class Column extends Component {
       return `mj-column-per-${parseInt(100 / sibling)}`
     }
 
-    const { width: parsedWidth, unit } = widthParser(width)
+    const { width: parsedWidth, unit } = helpers.widthParser(width)
 
     switch (unit) {
       case '%':
