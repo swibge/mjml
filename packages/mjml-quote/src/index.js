@@ -2,7 +2,7 @@ import { MJMLElement } from 'mjml-core'
 import merge from 'lodash/merge'
 import React, { Component } from 'react'
 
-const tagName = 'mj-text'
+const tagName = 'mj-quote'
 const defaultMJMLDefinition = {
   content: '',
   attributes: {
@@ -23,7 +23,7 @@ const baseStyles = {
 }
 
 @MJMLElement
-class Text extends Component {
+class Quote extends Component {
 
   styles = this.getStyles()
 
@@ -55,10 +55,10 @@ class Text extends Component {
 
 }
 
-Text.tagName = tagName
-Text.defaultMJMLDefinition = defaultMJMLDefinition
-Text.endingTag = endingTag
-Text.columnElement = columnElement
-Text.baseStyles = baseStyles
+Quote.tagName = tagName
+Quote.defaultMJMLDefinition = defaultMJMLDefinition
+Quote.endingTag = endingTag
+Quote.columnElement = columnElement
+Quote.baseStyles = baseStyles
 
-export default Text
+export default Quote
