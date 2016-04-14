@@ -2,6 +2,12 @@ import { MJMLElement } from 'mjml-core'
 import merge from 'lodash/merge'
 import React, { Component } from 'react'
 
+import MJMLSection from 'mjml-section'
+import MJMLColumn from 'mjml-column'
+import MJMLText from 'mjml-text'
+import MJMLRaw from 'mjml-raw'
+import MJMLImage from 'mjml-image'
+
 const tagName = 'mj-quote'
 const defaultMJMLDefinition = {
   content: '',
@@ -15,7 +21,7 @@ const defaultMJMLDefinition = {
   }
 }
 const endingTag = true
-const columnElement = true
+// const columnElement = true
 const baseStyles = {
   div: {
     cursor: 'auto'
@@ -43,13 +49,40 @@ class Quote extends Component {
     })
   }
 
-  render () {
+  renderQuote () {
     const { mjContent } = this.props
 
     return (
-      <div
-        dangerouslySetInnerHTML={{ __html: mjContent() }}
-        style={this.styles.div} />
+      <tr><td style={{paddingLeft: '25px', paddingTop: '25px'}} >
+        <table border="0" cellPadding="0" cellSpacing="0" align="center" style={{margin:'0 auto', borderLeft: '2px solid #e04343'}}>
+          <tbody>
+            <MJMLText
+              padding="25px"
+              font-style="italic"
+              font-size="15px"
+              font-weight="normal"
+            >
+              {mjContent()}
+            </MJMLText>
+          </tbody>
+        </table>
+      </td></tr>
+    )
+  }
+
+  render () {
+    const { mjAttribute } = this.props
+
+    return (
+      <MJMLSection full-width="full-width" background-color="#f0f0f0" padding="0">
+        <MJMLColumn width="62.5%">
+          {this.renderQuote()}
+          <MJMLText align="center" padding-bottom="25px">{mjAttribute('author')}</MJMLText>
+        </MJMLColumn>
+        <MJMLColumn width="37.5%">
+          <MJMLImage padding="0" src={mjAttribute('image-href')} align="right" />
+        </MJMLColumn>
+      </MJMLSection>
     )
   }
 
@@ -58,7 +91,7 @@ class Quote extends Component {
 Quote.tagName = tagName
 Quote.defaultMJMLDefinition = defaultMJMLDefinition
 Quote.endingTag = endingTag
-Quote.columnElement = columnElement
+// Quote.columnElement = columnElement
 Quote.baseStyles = baseStyles
 
 export default Quote
