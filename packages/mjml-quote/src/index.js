@@ -12,6 +12,8 @@ const tagName = 'mj-quote'
 const defaultMJMLDefinition = {
   content: '',
   attributes: {
+    'border': '2px solid #000',
+
     'align': 'left',
     'color': '#000000',
     'font-family': 'Ubuntu, Helvetica, Arial, sans-serif',
@@ -23,6 +25,10 @@ const defaultMJMLDefinition = {
 const endingTag = true
 // const columnElement = true
 const baseStyles = {
+  table: {
+    margin: '0 auto'
+  },
+
   div: {
     cursor: 'auto'
   }
@@ -37,6 +43,10 @@ class Quote extends Component {
     const { mjAttribute } = this.props
 
     return merge({}, baseStyles, {
+      table: {
+        borderLeft: mjAttribute('border')
+      },
+
       div: {
         color: mjAttribute('color'),
         fontFamily: mjAttribute('font-family'),
@@ -54,7 +64,12 @@ class Quote extends Component {
 
     return (
       <tr><td style={{paddingLeft: '25px', paddingTop: '25px'}} >
-        <table border="0" cellPadding="0" cellSpacing="0" align="center" style={{margin:'0 auto', borderLeft: '2px solid #e04343'}}>
+        <table
+          border="0"
+          cellPadding="0"
+          cellSpacing="0"
+          align="center"
+          style={this.styles.table}>
           <tbody>
             <MJMLText
               padding="25px"
@@ -73,14 +88,18 @@ class Quote extends Component {
   render () {
     const { mjAttribute } = this.props
 
+    // console.log(this.props.parentWidth)
+
     return (
-      <MJMLSection full-width="full-width" background-color="#f0f0f0" padding="0">
+      <MJMLSection width={this.props.parentWidth} full-width="full-width" background-color="#f0f0f0" padding="0">
         <MJMLColumn width="62.5%">
           {this.renderQuote()}
           <MJMLText align="center" padding-bottom="25px">{mjAttribute('author')}</MJMLText>
         </MJMLColumn>
         <MJMLColumn width="37.5%">
-          <MJMLImage padding="0" src={mjAttribute('image-href')} align="right" />
+          <tr><td width="100%">
+            <img src="http://i.imgur.com/0OR13om.jpg" alt="" width={this.props.parentWidth} style={{display:'block', margin:'0 auto', width:'100%', height:'auto', color:'#2a2e3c'}} />
+          </td></tr>
         </MJMLColumn>
       </MJMLSection>
     )
