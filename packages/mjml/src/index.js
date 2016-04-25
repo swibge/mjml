@@ -1,5 +1,5 @@
 import { registerMJElement } from 'mjml-core'
-import Body from 'mjml-body'
+import Container from 'mjml-container'
 import Button from 'mjml-button'
 import Column from 'mjml-column'
 import Divider from 'mjml-divider'
@@ -16,7 +16,7 @@ import Table from 'mjml-table'
 import Text from 'mjml-text'
 import Quote from 'mjml-quote'
 
-[ Body,
+[ Container,
   Button,
   Column,
   Divider,

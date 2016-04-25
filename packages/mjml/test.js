@@ -1,6 +1,6 @@
 var mjml = require('./lib/index')
 
-// console.log(
+console.log(
 mjml.mjml2html(`
   <mjml>
     <content>
@@ -15,4 +15,4 @@ mjml.mjml2html(`
     </content>
   </mjml>
 `, { beautify: true })
-// )
+)

@@ -1,4 +1,4 @@
-import { widthParser } from '../helpers/mjAttribute'
+import { widthParser, defaultUnit } from '../helpers/mjAttribute'
 import Immutable from 'immutable'
 import merge from 'lodash/merge'
 import MJMLElementsCollection from '../MJMLElementsCollection'
@@ -57,11 +57,11 @@ function createComponent (ComposedComponent) {
         td: {
           background: this.mjAttribute('container-background-color'),
           fontSize: '0px',
-          padding: this.mjAttribute('padding'),
-          paddingTop: this.mjAttribute('padding-top'),
-          paddingBottom: this.mjAttribute('padding-bottom'),
-          paddingRight: this.mjAttribute('padding-right'),
-          paddingLeft: this.mjAttribute('padding-left'),
+          padding: defaultUnit(this.mjAttribute('padding'), "px"),
+          paddingTop: defaultUnit(this.mjAttribute('padding-top'), "px"),
+          paddingBottom: defaultUnit(this.mjAttribute('padding-bottom'), "px"),
+          paddingRight: defaultUnit(this.mjAttribute('padding-right'), "px"),
+          paddingLeft: defaultUnit(this.mjAttribute('padding-left'), "px"),
           textAlign: this.mjAttribute('align')
         }
       })
@@ -125,26 +125,26 @@ function createComponent (ComposedComponent) {
       let i = 0
 
       children.forEach(child => {
-        let mjml = child.props.mjml
+        const childProps = Object.assign({}, child.props)
 
-        if (mjml && mjml.get('tagName') !== 'mj-raw') {
-          mjml = child.props.mjml.setIn(['attributes', 'rawPxWidth'], elementsWidth[i])
+        if (childProps.mjml) {
+          childProps.mjml = childProps.mjml.setIn(['attributes', 'rawPxWidth'], elementsWidth[i])
 
           if (this.mjml.get('inheritedAttributes')) {
-            mjml = mjml.mergeIn(['attributes', this.inheritedAttributes()])
+            childProps.mjml =  childProps.mjml.mergeIn(['attributes', this.inheritedAttributes()])
           }
-
-          wrappedElements.push(React.cloneElement(child, { mjml }))
-
-          if (i < realChildren.length - 1) {
-            wrappedElements.push(<div key={`outlook-${i}`} className={`${prefix}-line`} data-width={elementsWidth[i + 1]} />)
-          }
-
-          i++
-        } else if (mjml) {
-          wrappedElements.push(React.cloneElement(child, { mjml }))
         } else {
-          wrappedElements.push(child)
+          Object.assign(childProps, {rawPxWidth: elementsWidth[i]})
+
+          if (this.mjml.get('inheritedAttributes')) {
+            Object.assign(childProps, this.inheritedAttributes())
+          }
+        }
+        const childWithProps = React.cloneElement(child, childProps)
+
+        wrappedElements.push(childWithProps)
+        if (childWithProps.type.tagName !== 'mj-raw' && i < realChildren.length - 1) {
+          wrappedElements.push(<div key={`outlook-${i}`} className={`${prefix}-line`} data-width={elementsWidth[++i]} />)
         }
       })
 
@@ -242,6 +242,7 @@ function createComponent (ComposedComponent) {
 
         parentWidth: this.getWidth(),
         getPadding: this.paddingParser,
+        defaultUnit,
 
         // assign helpers methods
         ...childMethods.reduce((acc, method) => ({

@@ -2,15 +2,17 @@
 
 ``` html
 
-  <mj-column>
-    <mj-social
-      mode="vertical"
-      display="google facebook"
-      google-icon-color="#424242"
-      facebook-icon-color="#424242"
-      facebook-href="my facebook page"
-      google-href="my google+ page"/>
-  </mj-column>
+  <mjml>
+    <mj-body>
+      <mj-social
+        mode="vertical"
+        display="google facebook"
+        google-icon-color="#424242"
+        facebook-icon-color="#424242"
+        facebook-href="my facebook page"
+        google-href="my google+ page"/>   
+    </mj-body>
+  </mjml>
 
 ```
 

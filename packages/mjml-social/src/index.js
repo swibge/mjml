@@ -130,7 +130,7 @@ class Social extends Component {
   styles = this.getStyles()
 
   getStyles () {
-    const { mjAttribute } = this.props
+    const { mjAttribute, defaultUnit } = this.props
 
     return merge({}, baseStyles, {
       div: {
@@ -139,18 +139,18 @@ class Social extends Component {
       a: {
         color: mjAttribute('color'),
         fontFamily: mjAttribute('font-family'),
-        fontSize: mjAttribute('font-size'),
+        fontSize: defaultUnit(mjAttribute('font-size'), "px"),
         fontStyle: mjAttribute('font-style'),
         fontWeight: mjAttribute('font-weight'),
-        lineHeight: mjAttribute('line-height'),
+        lineHeight: defaultUnit(mjAttribute('line-height'), "px"),
         textDecoration: mjAttribute('text-decoration')
       },
       td1: {
         padding: this.isHorizontal() ? '0 4px' : '4px 0'
       },
       td2: {
-        width: mjAttribute('icon-size'),
-        height: mjAttribute('icon-size')
+        width: defaultUnit(mjAttribute('icon-size'), "px"),
+        height: defaultUnit(mjAttribute('icon-size'), "px")
       }
     })
   }
@@ -203,12 +203,12 @@ class Social extends Component {
           </table>
         </td>
         { this.isInTextMode() &&
-        <td style={this.styles.tdText}>
-          <a
-            dangerouslySetInnerHTML={{ __html: mjAttribute(`${platform}-content`) }}
-            href={href}
-            style={this.styles.a} />
-         </td> }
+          <td style={this.styles.tdText}>
+            <a
+              dangerouslySetInnerHTML={{ __html: mjAttribute(`${platform}-content`) }}
+              href={href}
+              style={this.styles.a} />
+          </td> }
       </tr>
     )
   }

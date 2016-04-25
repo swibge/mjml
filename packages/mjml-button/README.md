@@ -2,12 +2,13 @@
 
 ``` html
 
-  <mj-column>
-    <mj-button font-family="Helvetica" background-color="#F45E43" color="white">
-      Don't click me!
-    </mj-button>
-  </mj-column>
-
+  <mjml>
+    <mj-body>
+      <mj-button font-family="Helvetica" background-color="#F45E43" color="white">
+        Don't click me!
+      </mj-button>
+    </mj-body>
+  </mjml>
 ```
 
 Displays a customizable button.
