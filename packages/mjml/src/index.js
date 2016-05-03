@@ -14,6 +14,8 @@ import Section from 'mjml-section'
 import Social from 'mjml-social'
 import Table from 'mjml-table'
 import Text from 'mjml-text'
+import Hero from 'mjml-hero'
+import HeroContent from 'mjml-hero-content'
 
 [ Container,
   Button,
@@ -29,6 +31,8 @@ import Text from 'mjml-text'
   Section,
   Social,
   Table,
-  Text ].map((element) => registerMJElement(element))
+  Text,
+  Hero,
+  HeroContent ].map((element) => registerMJElement(element))
 
 export * from 'mjml-core'
