@@ -5,17 +5,12 @@ import merge from 'lodash/merge'
 const tagName = 'mj-hero'
 const defaultMJMLDefinition = {
   attributes: {
-    'mode': 'fluid-height',
+    'mode': 'fixed-height',
     'height': '0px',
     'background-width': '0px',
     'background-height': '0px',
-    'background-url': '',
-    'background-color': '',
     'background-position': 'center center',
-    'padding-top': '0px',
-    'padding-left': '0px',
-    'padding-right': '0px',
-    'padding-bottom': '0px'
+    'padding': '0px'
   }
 }
 
@@ -39,11 +34,7 @@ const baseStyles = {
   },
   hero: {
     backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center center',
-    paddingTop: '0px',
-    paddingLeft: '0px',
-    paddingRight: '0px',
-    paddingBottom: '0px'
+    verticalAlign: 'top'
   }
 }
 
@@ -88,18 +79,19 @@ class Hero extends Component {
   styles = this.getStyles()
 
   getFixedHeight() {
-    const { mjAttribute } = this.props
+    const { mjAttribute, getPadding } = this.props
     let
       height = 0,
       paddingTop = 0,
       paddingBottom = 0
 
-    height = parseInt(mjAttribute('height').slice(0, -2))
+
+    height = parseInt(mjAttribute('height').replace('px', ''))
     paddingTop = Math.abs(
-      mjAttribute('padding-top').slice(0, -2)
+      getPadding('top')
     )
     paddingBottom = Math.abs(
-      parseInt(mjAttribute('padding-bottom').slice(0, -2))
+      getPadding('bottom')
     )
 
     return height - paddingTop - paddingBottom
@@ -107,8 +99,8 @@ class Hero extends Component {
 
   getBackgroundCrop() {
     const { mjAttribute } = this.props,
-      height = parseInt(mjAttribute('height').slice(0, -2)) || 0,
-      backgroundHeight = parseInt(mjAttribute('background-height').slice(0, -2)) || 0,
+      height = parseInt(mjAttribute('height').replace('px', '')),
+      backgroundHeight = parseInt(mjAttribute('background-height').replace('px', '')),
       backgroundPositionTop = mjAttribute('background-position').split(' ')[0] || 'center'
     let cropTop = 0,
       cropBottom = 0
@@ -123,7 +115,7 @@ class Hero extends Component {
           cropBottom = cropTop
           break
         case 'bottom':
-          cropBottom = Math.round((backgroundHeight - height) / backgroundHeight * 100) / 100
+          cropTop = Math.round((backgroundHeight - height) / backgroundHeight * 100) / 100
           break;
       }
     }
@@ -133,8 +125,8 @@ class Hero extends Component {
 
   getBackgroundRatio() {
     const { mjAttribute } = this.props,
-      backgroundWidth = parseInt(mjAttribute('background-width').slice(0, -2)) || 1,
-      backgroundHeight = parseInt(mjAttribute('background-height').slice(0, -2)) || 0
+      backgroundWidth = parseInt(mjAttribute('background-width').replace('px', '')),
+      backgroundHeight = parseInt(mjAttribute('background-height').replace('px', ''))
 
     return Math.round((backgroundHeight / backgroundWidth * 100) * 10000) / 10000
   }
@@ -143,7 +135,7 @@ class Hero extends Component {
     const { mjAttribute } = this.props
     let background = ''
 
-    background += `${mjAttribute('background-color')} `
+    background += `${mjAttribute('background-color') || ''} `
     background += mjAttribute('background-url') ? `url(${mjAttribute('background-url')}) ` : ''
     background += 'no-repeat '
     background += `${mjAttribute('background-position')} `
@@ -153,7 +145,7 @@ class Hero extends Component {
   }
 
   getStyles() {
-    const { mjAttribute } = this.props,
+    const { mjAttribute, getPadding } = this.props,
       backgroundRatio = this.getBackgroundRatio(),
       backgroundStyle = this.getBackgroundStyle()
 
@@ -163,10 +155,10 @@ class Hero extends Component {
       },
       hero: {
         background: backgroundStyle,
-        paddingTop: mjAttribute('padding-top'),
-        paddingLeft: mjAttribute('padding-left'),
-        paddingRight: mjAttribute('padding-right'),
-        paddingBottom: mjAttribute('padding-bottom'),
+        paddingTop: getPadding('top'),
+        paddingLeft: getPadding('left'),
+        paddingRight: getPadding('right'),
+        paddingBottom: getPadding('bottom'),
         backgroundPosition: mjAttribute('background-position')
       }
     })
@@ -213,13 +205,13 @@ class Hero extends Component {
   }
 
   render() {
-    const { mjAttribute } = this.props
+    const { mjAttribute, defaultUnit } = this.props
 
     return (
       <div
         className="mj-hero-outlook"
-        data-background-width={mjAttribute('background-width')}
-        data-background-height={mjAttribute('background-height')}
+        data-background-width={defaultUnit(mjAttribute('background-width'), 'px')}
+        data-background-height={defaultUnit(mjAttribute('background-height'), 'px')}
         data-background-url={mjAttribute('background-url')}
         style={this.styles.div}>
         <table
