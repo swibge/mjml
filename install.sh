@@ -49,6 +49,7 @@ cd mjml-location  && npm link && npm link mjml-core && npm link mjml-text && cd 
 cd mjml-raw  && npm link && npm link mjml-core && cd ..
 cd mjml-section  && npm link && npm link mjml-core && cd ..
 cd mjml-social  && npm link && npm link mjml-core && cd ..
+cd mjml-hero-content  && npm link && npm link mjml-core && cd ..
 cd mjml-hero  && npm link && npm link mjml-core && cd ..
 
 printf "${BGreen}Done.${Color_Off} \n"
@@ -73,6 +74,7 @@ npm link mjml-social
 npm link mjml-table
 npm link mjml-text
 npm link mjml-hero
+npm link mjml-hero-content
 
 cd ../..
 
