@@ -6,7 +6,6 @@ const tagName = 'mj-hero-content'
 const defaultMJMLDefinition = {
   padding: '0px',
   align: 'center',
-  textAlign: 'left',
   inheritedAttributes: [
     'width'
   ]
