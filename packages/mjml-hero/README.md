@@ -78,8 +78,10 @@
 Display a section with a background image and some content inside (mj-text, mj-button, mj-image ...)
 
 The height attribute is required only for the fixed-height mode
+
 The background position does not work in mode fluid-height and on outlook.com
-For better result we encourage you to use a background image with a 600px width
+
+For better result we encourage you to use a background image with a 600px width and always specified a background color (some mail clients does not support background image)
 
 attribute           | unit                                | description                                                          | default value
 --------------------|-------------------------------------|----------------------------------------------------------------------|--------------
