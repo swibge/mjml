@@ -88,7 +88,7 @@ height              | px                                  | hero section height 
 background-width    | px                                  | width of the image used                                              | 0px
 background-height   | px                                  | height of the image used                                             | 0px
 background-url      | url                                 | background url                                                       | n/a
-background-color    | color formats                       | section color                                                        | n/a
+background-color    | color formats                       | hero color                                                           | n/a
 background-position | top/center/bottom left/center/right | background image position                                            | center center
 padding             | px                                  | supports up to 4 parameters                                          | 0px
 padding-top         | px                                  | top offset                                                           | 0px
