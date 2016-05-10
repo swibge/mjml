@@ -35,7 +35,8 @@ const baseStyles = {
   },
   hero: {
     backgroundRepeat: 'no-repeat',
-    verticalAlign: 'top'
+    verticalAlign: 'top',
+    backgroundSize: 'cover'
   }
 }
 
@@ -51,11 +52,11 @@ const postRender = $ => {
 
   $('.mj-hero-fixed-height').each(function () {
     dataCrop = $(this).data('crop')
-    height = parseInt($(this).attr('height'))
+    height = backgroundHeight
 
     backgroundCropTop = dataCrop.split(', ')[0].split(':')[1]
     backgroundCropBottom = dataCrop.split(', ')[1].split(':')[1]
-    backgroundHeight = `${height}px`
+    backgroundHeight = `${height}`
 
     $(this)
       .removeAttr('data-crop')

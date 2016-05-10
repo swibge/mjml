@@ -15,8 +15,7 @@ const endingTag = false
 
 const baseStyles = {
   div: {
-    float: 'center',
-    margin: '0px'
+    float: 'center'
   },
   table: {
     width: '100%',
@@ -69,6 +68,7 @@ class HeroContent extends Component {
     return merge({}, baseStyles, {
       div: {
         float: mjAttribute('align'),
+        margin: mjAttribute('align') === 'center' ? '0px auto' : '0px',
         width: defaultUnit(mjAttribute('width'), 'px'),
         backgroundColor: mjAttribute('background-color')
       },
