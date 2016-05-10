@@ -1,11 +1,7 @@
 ## MJ-HERO
 
 <p align="center">
-<img src="https://cloud.githubusercontent.com/assets/1830348/15142959/a4fb9d08-16a7-11e6-8870-848374248c26.png" style="width: 600px;" />
-</p>
-
-<p align="center">
-<img src="https://cloud.githubusercontent.com/assets/1830348/15142998/d95a4342-16a7-11e6-9719-95d16b8224b7.png" style="width: 600px;" />
+<img src="https://cloud.githubusercontent.com/assets/1830348/15144432/b074ff0a-16af-11e6-9680-892138a1dc7f.png" />
 </p>
 
 ``` html
