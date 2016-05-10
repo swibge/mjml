@@ -24,8 +24,6 @@ const baseStyles = {
 }
 
 const postRender = $ => {
-  let mediaQueryHeroContentExist = false
-
   $('.mj-hero-content').each(function () {
     const width = $(this).css('width').replace('px', '')
     const align = $(this).data('align')
@@ -42,20 +40,16 @@ const postRender = $ => {
   })
 
   $('head style').each(function () {
-    if ($(this).attr('data-hero-content') === '') {
-      mediaQueryHeroContentExist = true
+    if ($(this).text().search('.mj-hero-content') === -1) {
+      $('head').append(`<style type="text/css">
+        @media only screen and (max-width:480px) {
+          .mj-hero-content {
+            width: 100% !important;
+          }
+        }
+      </style>`)
     }
   })
-
-  if (!mediaQueryHeroContentExist) {
-    $('head').append(`<style data-hero-content type="text/css">
-      @media only screen and (max-width:480px) {
-      	.mj-hero-content {
-          width: 100% !important;
-        }
-      }
-    </style>`)
-  }
 
   return $
 }
