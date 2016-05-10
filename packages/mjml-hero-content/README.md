@@ -4,11 +4,11 @@ Display some content in an `mj-hero` component
 
 attribute        | unit              | description                                    | default value
 -----------------|-------------------|------------------------------------------------|------------------------------
-width            | px                | content width                                  | inherited from mj-hero parent
+width            | px/percent        | content width                                  | 100%
 align            | left/center/right | horizontal alignment                           | center
-background-color | color formats     | content background color in hexadecimal format | n/a
-padding          | px                | work the same way as the CSS property padding  | 0px
-padding-top      | px                | self explanatory                               | 0px
-padding-right    | px                | self explanatory                               | 0px
-padding-left     | px                | self explanatory                               | 0px
-padding-bottom   | px                | self explanatory                               | 0px
+background-color | color             | content background color                       | transparent
+padding          | px                | supports up to 4 parameters                    | 0px
+padding-top      | px                | top offset                                     | 0px
+padding-right    | px                | right offset                                   | 0px
+padding-left     | px                | left offset                                    | 0px
+padding-bottom   | px                | bottom offset                                  | 0px

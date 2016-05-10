@@ -1,7 +1,11 @@
 ## MJ-HERO
 
 <p align="center">
-<img src="" style="width: px; padding: px;" />
+<img src="https://cloud.githubusercontent.com/assets/1830348/15142959/a4fb9d08-16a7-11e6-8870-848374248c26.png" style="width: 600px;" />
+</p>
+
+<p align="center">
+<img src="https://cloud.githubusercontent.com/assets/1830348/15142998/d95a4342-16a7-11e6-9719-95d16b8224b7.png" style="width: 600px;" />
 </p>
 
 ``` html
@@ -39,7 +43,7 @@ The height attribute is required only for the fixed-height mode
 
 The background position does not work in mode fluid-height and on outlook.com
 
-For better result we encourage you to use a background image with a 600px width and always specified a background color by default in case of the user mail client does not support background image.
+For better result we encourage you to use a background image with a 600px width and always specify a fallback background color, in case the user email client does not support background images.
 </aside>
 
 attribute           | unit                                | description                                                          | default value
@@ -49,10 +53,10 @@ height              | px                                  | hero section height 
 background-width    | px                                  | width of the image used                                              | 0px
 background-height   | px                                  | height of the image used                                             | 0px
 background-url      | url                                 | absolute background url                                              | n/a
-background-color    | color formats                       | hero background color in hexadecimal format                          | n/a
+background-color    | color                               | hero background color                                                | #ffffff
 background-position | top/center/bottom left/center/right | background image position                                            | center center
-padding             | px                                  | work the same way as the CSS property padding                        | 0px
-padding-top         | px                                  | self explanatory                                                     | 0px
-padding-right       | px                                  | self explanatory                                                     | 0px
-padding-left        | px                                  | self explanatory                                                     | 0px
-padding-bottom      | px                                  | self explanatory                                                     | 0px
+padding             | px                                  | supports up to 4 parameters                                          | 0px
+padding-top         | px                                  | top offset                                                           | 0px
+padding-right       | px                                  | right offset                                                         | 0px
+padding-left        | px                                  | left offset                                                          | 0px
+padding-bottom      | px                                  | bottom offset                                                        | 0px
