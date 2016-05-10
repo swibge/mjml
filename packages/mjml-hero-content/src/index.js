@@ -35,25 +35,19 @@ const postRender = $ => {
       <table border="0" cellpadding="0" cellspacing="0" align="${align}" width="${width.replace('px', '')}" style="width:${width};"><tr><td style="padding:0;background-color:${backgroundColor};">
       <![endif]-->`)
     .after(`<!--[if mso]>
-      </table>
+    </td></tr></table>
       <![endif]-->`)
     .removeAttr('data-background-color')
     .removeAttr('data-align')
   })
 
-  $('head style').each(function () {
-    stylesText += $(this).text()
-  })
-
-  if (stylesText.search('.mj-hero-content') === -1) {
-    $('head').append(`<style type="text/css">
-      @media only screen and (max-width:480px) {
-        .mj-hero-content {
-          width: 100% !important;
-        }
+  $('head').append(`<style type="text/css">
+    @media only screen and (max-width:480px) {
+      .mj-hero-content {
+        width: 100% !important;
       }
-    </style>`)
-  }
+    }
+  </style>`)
 
   return $
 }

@@ -47,30 +47,37 @@ const postRender = $ => {
     backgroundHeight = $('.mj-hero-outlook').data('background-height'),
     backgroundCropTop = 0,
     backgroundCropBottom = 0,
-    dataCrop,
-    height = 0
-
-  $('.mj-hero-fixed-height').each(function () {
-    dataCrop = $(this).data('crop')
-    height = backgroundHeight
-
-    backgroundCropTop = dataCrop.split(', ')[0].split(':')[1]
-    backgroundCropBottom = dataCrop.split(', ')[1].split(':')[1]
-    backgroundHeight = `${height}`
-
-    $(this)
-      .removeAttr('data-crop')
-      .removeAttr('class')
-  })
+    dataCrop = '',
+    height = 0,
+    $element
 
   $('.mj-hero-outlook').each(function () {
-    if (backgroundUrl) {
-      $(this).before(`<!--[if mso]>
-          <v:image xmlns:v="urn:schemas-microsoft-com:vml" croptop="${backgroundCropTop}" cropbottom="${backgroundCropBottom}" style="width:${backgroundWidth}; height:${backgroundHeight}; position:absolute; top:0; left:0; border:0; z-index:-3;" src="${backgroundUrl}" />
-        <![endif]-->`)
+    backgroundHeight = $(this).data('background-height')
+    backgroundCropTop = 0
+    backgroundCropBottom = 0
+    dataCrop = ''
+    height = 0
+
+    $element = $(this).find('.mj-hero-fixed-height').first()
+
+    if ($element.length) {
+      dataCrop = $element.data('crop')
+      height = parseInt($element.attr('height'))
+
+      backgroundCropTop = dataCrop.split(', ')[0].split(':')[1]
+      backgroundCropBottom = dataCrop.split(', ')[1].split(':')[1]
+      backgroundHeight = `${height}px`
+
+      $element
+        .removeAttr('class')
+        .removeAttr('data-crop')
     }
 
-    $(this).removeAttr('class')
+    $(this)
+      .before(`<!--[if mso]>
+          <v:image xmlns:v="urn:schemas-microsoft-com:vml" croptop="${backgroundCropTop}" cropbottom="${backgroundCropBottom}" style="width:${backgroundWidth}; height:${backgroundHeight}; position:absolute; top:0; left:0; border:0; z-index:-3;" src="${backgroundUrl}" />
+        <![endif]-->`)
+      .removeAttr('class')
       .removeAttr('data-background-width')
       .removeAttr('data-background-height')
       .removeAttr('data-background-url')
@@ -82,6 +89,7 @@ const postRender = $ => {
 @MJMLElement
 class Hero extends Component {
   styles = this.getStyles()
+  id = 'a'
 
   getFixedHeight() {
     const { mjAttribute, getPadding } = this.props
