@@ -4,11 +4,12 @@ import merge from 'lodash/merge'
 
 const tagName = 'mj-hero-content'
 const defaultMJMLDefinition = {
-  padding: '0px',
-  align: 'center',
-  inheritedAttributes: [
-    'width'
-  ]
+  attributes: {
+    'width': '100%',
+    'padding': '0px',
+    'align': 'center',
+    'background-color': 'transparent'
+  }
 }
 const endingTag = false
 
@@ -24,13 +25,15 @@ const baseStyles = {
 }
 
 const postRender = $ => {
+  let stylesText = ''
+
   $('.mj-hero-content').each(function () {
-    const width = $(this).css('width').replace('px', '')
+    const width = $(this).css('width')
     const align = $(this).data('align')
     const backgroundColor = $(this).data('background-color')
 
     $(this).before(`<!--[if mso]>
-      <table border="0" cellpadding="0" cellspacing="0" align="${align}" width="${width}" style="width:${width}px;"><tr><td style="padding:0;background-color:${backgroundColor};">
+      <table border="0" cellpadding="0" cellspacing="0" align="${align}" width="${width.replace('px', '')}" style="width:${width};"><tr><td style="padding:0;background-color:${backgroundColor};">
       <![endif]-->`)
     .after(`<!--[if mso]>
       </table>
@@ -40,16 +43,18 @@ const postRender = $ => {
   })
 
   $('head style').each(function () {
-    if ($(this).text().search('.mj-hero-content') === -1) {
-      $('head').append(`<style type="text/css">
-        @media only screen and (max-width:480px) {
-          .mj-hero-content {
-            width: 100% !important;
-          }
-        }
-      </style>`)
-    }
+    stylesText += $(this).text()
   })
+
+  if (stylesText.search('.mj-hero-content') === -1) {
+    $('head').append(`<style type="text/css">
+      @media only screen and (max-width:480px) {
+        .mj-hero-content {
+          width: 100% !important;
+        }
+      }
+    </style>`)
+  }
 
   return $
 }

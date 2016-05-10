@@ -10,7 +10,8 @@ const defaultMJMLDefinition = {
     'background-width': '0px',
     'background-height': '0px',
     'background-position': 'center center',
-    'padding': '0px'
+    'padding': '0px',
+    'background-color': '#ffffff'
   }
 }
 
@@ -62,13 +63,16 @@ const postRender = $ => {
   })
 
   $('.mj-hero-outlook').each(function () {
-    $(this).before(`<!--[if mso]>
-        <v:image xmlns:v="urn:schemas-microsoft-com:vml" croptop="${backgroundCropTop}" cropbottom="${backgroundCropBottom}" style="width:${backgroundWidth}; height:${backgroundHeight}; position:absolute; top:0; left:0; border:0; z-index:-3;" src="${backgroundUrl}" />
-      <![endif]-->`)
-    .removeAttr('class')
-    .removeAttr('data-background-width')
-    .removeAttr('data-background-height')
-    .removeAttr('data-background-url')
+    if (backgroundUrl) {
+      $(this).before(`<!--[if mso]>
+          <v:image xmlns:v="urn:schemas-microsoft-com:vml" croptop="${backgroundCropTop}" cropbottom="${backgroundCropBottom}" style="width:${backgroundWidth}; height:${backgroundHeight}; position:absolute; top:0; left:0; border:0; z-index:-3;" src="${backgroundUrl}" />
+        <![endif]-->`)
+    }
+
+    $(this).removeAttr('class')
+      .removeAttr('data-background-width')
+      .removeAttr('data-background-height')
+      .removeAttr('data-background-url')
   })
 
   return $
