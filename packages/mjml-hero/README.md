@@ -1,7 +1,7 @@
 ## MJ-HERO
 
 <p align="center">
-<img src="https://cloud.githubusercontent.com/assets/1830348/15144432/b074ff0a-16af-11e6-9680-892138a1dc7f.png" />
+<img src="https://cloud.githubusercontent.com/assets/1830348/15150602/30ab6970-16ce-11e6-9132-ee4c65f34aa2.png" />
 </p>
 
 ``` html
@@ -40,6 +40,8 @@ The height attribute is required only for the fixed-height mode
 The background position does not work in mode fluid-height and on outlook.com
 
 For better result we encourage you to use a background image with a 600px width and always specify a fallback background color, in case the user email client does not support background images.
+
+Please keep the hero container height below the image height. When the hero container height - both in fixed or fluid modes - is greater than the background image height, we can’t guarantee a perfect rendering in all supported email clients
 </aside>
 
 attribute           | unit                                | description                                                          | default value
